@@ -25,6 +25,6 @@ namespace WEB.CRUDAJAX.NET.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Customers> Customers { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
     }
 }

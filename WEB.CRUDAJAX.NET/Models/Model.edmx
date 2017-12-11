@@ -21,7 +21,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BDPRUEBASModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Customers">
+        <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="CustomerId" />
           </Key>
@@ -30,7 +30,7 @@
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityContainer Name="BDPRUEBASEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Customers" EntityType="Self.Customers" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -39,7 +39,7 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="BDPRUEBASModelStoreContainer" CdmEntityContainer="BDPRUEBASEntities">
           <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="BDPRUEBASModel.Customers">
+            <EntityTypeMapping TypeName="BDPRUEBASModel.Customer">
               <MappingFragment StoreEntitySet="Customers">
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -61,7 +61,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />

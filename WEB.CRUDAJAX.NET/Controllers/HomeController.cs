@@ -13,7 +13,7 @@ namespace WEB.CRUDAJAX.NET.Controllers
 
         public ActionResult EliminarCliente(int id)
         {
-            Customers eliminar = (from e in ctx.Customers where e.CustomerId == id select e).FirstOrDefault();
+            Customer eliminar = (from e in ctx.Customers where e.CustomerId == id select e).FirstOrDefault();
 
             ctx.Customers.Remove(eliminar);
             ctx.SaveChanges();
@@ -21,9 +21,9 @@ namespace WEB.CRUDAJAX.NET.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditarCliente(Customers cliente)
+        public ActionResult EditarCliente(Customer cliente)
         {
-            Customers actualizar = (from c in ctx.Customers where c.CustomerId == cliente.CustomerId select c).FirstOrDefault();
+            Customer actualizar = (from c in ctx.Customers where c.CustomerId == cliente.CustomerId select c).FirstOrDefault();
 
             actualizar.Country = cliente.Country;
             actualizar.Name = cliente.Name;
@@ -33,7 +33,7 @@ namespace WEB.CRUDAJAX.NET.Controllers
         }
 
         [HttpPost]
-        public ActionResult CrearCliente(Customers cliente)
+        public ActionResult CrearCliente(Customer cliente)
         {
             ctx.Customers.Add(cliente);
             ctx.SaveChanges();

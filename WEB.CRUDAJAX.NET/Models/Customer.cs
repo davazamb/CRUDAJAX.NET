@@ -12,7 +12,7 @@ namespace WEB.CRUDAJAX.NET.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Customers
+    public partial class Customer
     {
         public int CustomerId { get; set; }
         public string Name { get; set; }
