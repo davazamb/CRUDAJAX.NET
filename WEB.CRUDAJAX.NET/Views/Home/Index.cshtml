@@ -57,7 +57,7 @@
             </td>
             <td style="width: 200px">
                 <br />
-                <input type="button" id="btnAdd" value="Add" />
+                <input type="button" id="btnAdd" value="Agregar" />
             </td>
         </tr>
     </table>
@@ -68,6 +68,7 @@
 
 
 
+@section scripts {
 
 <script type="text/javascript">
         $(function () {
@@ -148,7 +149,7 @@
             $.ajax({
                 type: "POST",
                 url: "/Home/EditarCliente",
-                data: '{customer:' + JSON.stringify(customer) + '}',
+                data: '{cliente:' + JSON.stringify(customer) + '}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json"
             });
@@ -174,19 +175,22 @@
 
         //Delete event handler.
         $("body").on("click", "#tblClientes .Delete", function () {
-            if (confirm("Do you want to delete this row?")) {
+            if (confirm("Esta seguro de eliminar el dato?")) {
                 var row = $(this).closest("tr");
                 var customerId = row.find("span").html();
                 $.ajax({
                     type: "POST",
                     url: "/Home/EliminarCliente",
-                    data: '{customerId: ' + customerId + '}',
+                    data: '{clienteid: ' + customerId + '}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {
                         row.remove();
+                        
                     }
                 });
+                window.location.reload();
             }
         });
 </script>
+}

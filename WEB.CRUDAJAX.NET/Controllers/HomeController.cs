@@ -11,9 +11,9 @@ namespace WEB.CRUDAJAX.NET.Controllers
     {
         BDPRUEBASEntities ctx = new BDPRUEBASEntities();
 
-        public ActionResult EliminarCliente(int id)
+        public ActionResult EliminarCliente(int clienteid)
         {
-            Customer eliminar = (from e in ctx.Customers where e.CustomerId == id select e).FirstOrDefault();
+            Customer eliminar = (from e in ctx.Customers where e.CustomerId == clienteid select e).FirstOrDefault();
 
             ctx.Customers.Remove(eliminar);
             ctx.SaveChanges();
@@ -33,7 +33,7 @@ namespace WEB.CRUDAJAX.NET.Controllers
         }
 
         [HttpPost]
-        public ActionResult CrearCliente(Customer cliente)
+        public JsonResult CrearCliente(Customer cliente)
         {
             ctx.Customers.Add(cliente);
             ctx.SaveChanges();
