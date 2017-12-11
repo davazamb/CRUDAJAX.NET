@@ -73,7 +73,7 @@
         $(function () {
             //Remove the dummy row if data present.
             if ($("#tblClientes tr").length > 2) {
-                $("#tblCustomerstblClientes tr:eq(1)").remove();
+                $("#tblClientes tr:eq(1)").remove();
             }
         });
         function AppendRow(row, customerId, name, country) {
@@ -87,7 +87,7 @@
             //Bind Country.
             $(".Country", row).find("span").html(country);
             $(".Country", row).find("input").val(country);
-            $("#tblCustomers").append(row);
+            $("#tblClientes").append(row);
         };
 
         //Add event handler.
@@ -96,12 +96,12 @@
             var txtCountry = $("#txtCountry");
             $.ajax({
                 type: "POST",
-                url: "/Home/InsertCustomer",
+                url: "/Home/CrearCliente",
                 data: '{name: "' + txtName.val() + '", country: "' + txtCountry.val() + '" }',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (r) {
-                    var row = $("#tblCustomers tr:last-child").clone(true);
+                    var row = $("#tblClientes tr:last-child").clone(true);
                     AppendRow(row, r.CustomerId, r.Name, r.Country);
                     txtName.val("");
                     txtCountry.val("");
@@ -110,7 +110,7 @@
         });
 
         //Edit event handler.
-        $("body").on("click", "#tblCustomers .Edit", function () {
+        $("body").on("click", "#tblClientes .Edit", function () {
             var row = $(this).closest("tr");
             $("td", row).each(function () {
                 if ($(this).find("input").length > 0) {
@@ -125,7 +125,7 @@
         });
 
         //Update event handler.
-        $("body").on("click", "#tblCustomers .Update", function () {
+        $("body").on("click", "#tblClientes .Update", function () {
             var row = $(this).closest("tr");
             $("td", row).each(function () {
                 if ($(this).find("input").length > 0) {
@@ -147,7 +147,7 @@
             customer.Country = row.find(".Country").find("span").html();
             $.ajax({
                 type: "POST",
-                url: "/Home/UpdateCustomer",
+                url: "/Home/EditarCliente",
                 data: '{customer:' + JSON.stringify(customer) + '}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json"
@@ -155,7 +155,7 @@
         });
 
         //Cancel event handler.
-        $("body").on("click", "#tblCustomers .Cancel", function () {
+        $("body").on("click", "#tblClientes .Cancel", function () {
             var row = $(this).closest("tr");
             $("td", row).each(function () {
                 if ($(this).find("input").length > 0) {
@@ -173,13 +173,13 @@
         });
 
         //Delete event handler.
-        $("body").on("click", "#tblCustomers .Delete", function () {
+        $("body").on("click", "#tblClientes .Delete", function () {
             if (confirm("Do you want to delete this row?")) {
                 var row = $(this).closest("tr");
                 var customerId = row.find("span").html();
                 $.ajax({
                     type: "POST",
-                    url: "/Home/DeleteCustomer",
+                    url: "/Home/EliminarCliente",
                     data: '{customerId: ' + customerId + '}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
